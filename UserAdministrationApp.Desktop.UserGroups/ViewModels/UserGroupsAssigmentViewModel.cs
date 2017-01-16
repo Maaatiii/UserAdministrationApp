@@ -13,10 +13,7 @@ namespace UserAdministrationApp.Desktop.UserGroups
 {
     public class UserGroupsAssigmentViewModel : ViewModelBase
     {
-        public string HeaderInfo
-        {
-            get { return "Users in groups"; }
-        }
+        public string HeaderInfo => "Users in groups";
 
         private readonly IGroupRepository groupRepository;
         private readonly IUserRepository userRepository;

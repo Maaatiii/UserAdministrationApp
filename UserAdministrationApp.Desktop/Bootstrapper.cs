@@ -28,29 +28,34 @@ namespace UserAdministrationApp.Desktop
 
         protected override void ConfigureModuleCatalog()
         {
-            Type moduleCType = typeof(UsersModule);
-            ModuleCatalog.AddModule(
-              new ModuleInfo()
-              {
-                  ModuleName = moduleCType.Name,
-                  ModuleType = moduleCType.AssemblyQualifiedName,
-              });
+            //Type moduleCType = typeof(UsersModule);
+            //ModuleCatalog.AddModule(
+            //  new ModuleInfo()
+            //  {
+            //      ModuleName = moduleCType.Name,
+            //      ModuleType = moduleCType.AssemblyQualifiedName,
+            //  });
 
-            Type groupsModule = typeof(GroupsModule);
-            ModuleCatalog.AddModule(
-              new ModuleInfo()
-              {
-                  ModuleName = groupsModule.Name,
-                  ModuleType = groupsModule.AssemblyQualifiedName,
-              });
+            //Type groupsModule = typeof(GroupsModule);
+            //ModuleCatalog.AddModule(
+            //  new ModuleInfo()
+            //  {
+            //      ModuleName = groupsModule.Name,
+            //      ModuleType = groupsModule.AssemblyQualifiedName,
+            //  });
 
-            Type userGroupsModule = typeof(UserGroupsModule);
-            ModuleCatalog.AddModule(
-              new ModuleInfo()
-              {
-                  ModuleName = userGroupsModule.Name,
-                  ModuleType = userGroupsModule.AssemblyQualifiedName,
-              });
+            //Type userGroupsModule = typeof(UserGroupsModule);
+            //ModuleCatalog.AddModule(
+            //  new ModuleInfo()
+            //  {
+            //      ModuleName = userGroupsModule.Name,
+            //      ModuleType = userGroupsModule.AssemblyQualifiedName,
+            //  });
+        }
+
+        protected override IModuleCatalog CreateModuleCatalog()
+        {
+            return new ConfigurationModuleCatalog();
         }
 
         protected override void InitializeShell()

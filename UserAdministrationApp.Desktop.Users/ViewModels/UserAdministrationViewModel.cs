@@ -20,10 +20,7 @@ namespace UserAdministrationApp.Desktop.Users.ViewModels
 {
     public sealed class UserAdministrationViewModel : CrudViewModel<UserModel>
     {
-        public string HeaderInfo
-        {
-            get { return "Users"; }
-        }
+        public string HeaderInfo => "Users";
 
         private readonly IUserRepository repository;
 

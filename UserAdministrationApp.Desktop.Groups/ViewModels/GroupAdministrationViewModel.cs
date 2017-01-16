@@ -14,10 +14,7 @@ namespace UserAdministrationApp.Desktop.Groups
 {
     public class GroupAdministrationViewModel : CrudViewModel<GroupModel>
     {
-        public string HeaderInfo
-        {
-            get { return "Groups"; }
-        }
+        public string HeaderInfo => "Groups";
 
         private readonly IGroupRepository repository;
         private readonly IRegionManager regionManager;

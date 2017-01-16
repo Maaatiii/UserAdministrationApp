@@ -10,6 +10,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <TabControl regions:RegionManager.RegionName="{x:Static inf:RegionNames.MainRegion}">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
@@ -20,6 +24,9 @@
                 </Style>
             </TabControl.Resources>
         </TabControl>
+        <StackPanel Grid.Row="1">
+            <Button Content="Load UserGroupModule" Command="{Binding LoadUserGroupModuleCommand}"/>
+        </StackPanel>
     </Grid>
 </controls:MetroWindow>
 
