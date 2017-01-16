@@ -7,8 +7,6 @@ namespace UserAdministrationApp.Desktop.Users.ViewModels
 {
     public class UserModel : BindableBase, IDataErrorInfo, IEntityModel
     {
-        private string _name;
-
         public UserModel(User user)
         {
             Name = user.Name;
@@ -22,44 +20,44 @@ namespace UserAdministrationApp.Desktop.Users.ViewModels
             IsNew = true;
         }
 
-        public bool IsNew { get; private set; }
+        public long Id { get; set; }
 
-        public DateTime CreatedOn { get; set; }
         public string Email { get; set; }
 
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                _name = value;
-                base.OnPropertyChanged(()=>Name);
-            }
-        }
+        public string Name { get; set; }
 
-        public long Id { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public string this[string columnName]
         {
-            get {
-                if (columnName == "Name")
+            get
+            {               
+                if (columnName == nameof(Name))
                 {
                     if (string.IsNullOrWhiteSpace(Name))
                     {
-                        Error = "error";
-                        
-                    }
-                    else
-                    {
-                        Error = string.Empty;
+                        return "Field is required";
                     }
                 }
-
-
-                return Error;
+                
+                return null;
             }
         }
 
-        public string Error { get; set; }
+        public string Error
+        {
+            get
+            {
+                IDataErrorInfo me = (IDataErrorInfo)this;
+                string error =
+                    me[nameof(Name)];
+                    
+                if (!string.IsNullOrEmpty(error))
+                    return "Please check inputted data.";
+                return null;
+            }
+        }
+
+        public bool IsNew { get; }
     }
 }

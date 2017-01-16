@@ -7,7 +7,7 @@ namespace UserAdministrationApp.Desktop.Groups
 {
     public class GroupModel : BindableBase, IDataErrorInfo, IEntityModel
     {
-        private string name;
+        public string Name { get; set; }
 
         public GroupModel()
         {
@@ -21,16 +21,6 @@ namespace UserAdministrationApp.Desktop.Groups
         }
 
         public long Id { get; set; }
-
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                base.OnPropertyChanged(nameof(Name));
-            }
-        }
 
         public bool IsNew { get; set; }
 

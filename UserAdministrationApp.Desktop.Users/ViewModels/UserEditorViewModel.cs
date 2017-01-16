@@ -20,12 +20,13 @@ namespace UserAdministrationApp.Desktop.Users.ViewModels
         {
             entity.CreatedOn = DateTime.Now;
             repository.Create(entity);
-            eventAggregator.GetEvent<UserCreatedEvent>().Publish(new UserCreatedParam());
+            eventAggregator.GetEvent<UserUpdatedEvent>().Publish(new UserUpdatedParam());
         }
 
         protected override void Update(User entity)
         {
             repository.Update(entity);
+            eventAggregator.GetEvent<UserUpdatedEvent>().Publish(new UserUpdatedParam());
         }
 
         protected override User CreateEmpty()

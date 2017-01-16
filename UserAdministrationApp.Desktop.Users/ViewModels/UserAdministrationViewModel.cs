@@ -37,19 +37,18 @@ namespace UserAdministrationApp.Desktop.Users.ViewModels
             this.eventAggregator = eventAggregator;
             this.regionManager = regionManager;
 
-            Load();
-
-            eventAggregator.GetEvent<UserCreatedEvent>().Subscribe(OnUserCreated);
+            eventAggregator.GetEvent<UserUpdatedEvent>().Subscribe(OnUserUpdated);
         }
 
-        private void OnUserCreated(UserCreatedParam obj)
+        private void OnUserUpdated(UserUpdatedParam obj)
         {
+            SelectedItem = null;
             Load();
         }
 
-        protected override void SelectedItemChanged()
+        protected override void OnSelectedItemChanged()
         {
-            base.SelectedItemChanged();
+            base.OnSelectedItemChanged();
 
             if (SelectedItem != null)
             {

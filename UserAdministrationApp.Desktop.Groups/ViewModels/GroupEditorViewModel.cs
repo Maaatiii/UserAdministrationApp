@@ -11,11 +11,11 @@ using UserAdministrationApp.Services;
 
 namespace UserAdministrationApp.Desktop.Groups
 {
-    public class GroupEditorViewModel : CrudEditorViewModel<GroupModel,Group,GroupRepository>, INavigationAware
+    public class GroupEditorViewModel : CrudEditorViewModel<GroupModel,Group,IGroupRepository>, INavigationAware
     {
         private readonly IEventAggregator eventAggregator;
         
-        public GroupEditorViewModel(GroupRepository repository, IEventAggregator eventAggregator) : base(repository)
+        public GroupEditorViewModel(IGroupRepository repository, IEventAggregator eventAggregator) : base(repository)
         {
             this.eventAggregator = eventAggregator;
         }
@@ -23,12 +23,13 @@ namespace UserAdministrationApp.Desktop.Groups
         protected override void Create(Group entity)
         {
             repository.Create(entity);
-            eventAggregator.GetEvent<GroupCreatedEvent>().Publish(new GroupCreatedParam());
+            eventAggregator.GetEvent<GroupUpdatedEvent>().Publish(new GroupUpdatedParam());
         }
 
         protected override void Update(Group entity)
         {
             repository.Update(entity);
+            eventAggregator.GetEvent<GroupUpdatedEvent>().Publish(new GroupUpdatedParam());
         }
 
         protected override Group CreateEmpty()

@@ -14,19 +14,9 @@
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Header" Value="{Binding Content.DataContext.HeaderInfo, RelativeSource={RelativeSource Self}}" />
-                    <Setter Property="HeaderTemplate">
-                        <Setter.Value>
-                            <DataTemplate DataType="{x:Type TabItem}">
-                                <Border x:Name="grid">
-                                    <ContentPresenter>
-                                        <ContentPresenter.Content>
-                                            <TextBlock Text="{TemplateBinding Content}"/>
-                                        </ContentPresenter.Content>
-                                    </ContentPresenter>
-                                </Border>
-                            </DataTemplate>
-                        </Setter.Value>
-                    </Setter>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="Padding" Value="10"/>
+      
                 </Style>
             </TabControl.Resources>
         </TabControl>

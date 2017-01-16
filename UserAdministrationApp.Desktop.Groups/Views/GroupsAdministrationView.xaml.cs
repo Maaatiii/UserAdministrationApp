@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserAdministrationApp.Desktop.Shared.Views;
 
 namespace UserAdministrationApp.Desktop.Groups.Views
 {
     /// <summary>
     /// Interaction logic for GroupsAdministrationView.xaml
     /// </summary>
-    public partial class GroupsAdministrationView : UserControl
+    public partial class GroupsAdministrationView : MVVMViewBase
     {
         public GroupsAdministrationView(GroupAdministrationViewModel viewModel)
         {

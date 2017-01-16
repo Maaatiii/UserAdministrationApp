@@ -22,6 +22,7 @@ namespace UserAdministrationApp.Desktop.Tests
         {
             var users = new[] { new User(), new User() };
             var viewModel = CreateTestViewModel(users);
+            viewModel.OnLoaded();
 
             Assert.AreEqual(viewModel.Items.Count, users.Length);
         }
@@ -31,7 +32,7 @@ namespace UserAdministrationApp.Desktop.Tests
             var repository = new Mock<IUserRepository>();
             var eventAggregator = new Mock<IEventAggregator>();
             var regionManager = new Mock<IRegionManager>();
-            eventAggregator.Setup(x => x.GetEvent<UserCreatedEvent>()).Returns(new UserCreatedEvent());
+            eventAggregator.Setup(x => x.GetEvent<UserUpdatedEvent>()).Returns(new UserUpdatedEvent());
             eventAggregator.Setup(x => x.GetEvent<UserChangedEvent>()).Returns(new UserChangedEvent());
             repository.Setup(x => x.GetAll(It.IsAny<string>())).Returns(users);
 
@@ -43,6 +44,7 @@ namespace UserAdministrationApp.Desktop.Tests
         {
             var users = new User[] { };
             var viewModel = CreateTestViewModel(users);
+            viewModel.OnLoaded();
             viewModel.AddCommand.Execute();
 
             Assert.AreEqual(1, viewModel.Items.Count);
@@ -57,10 +59,11 @@ namespace UserAdministrationApp.Desktop.Tests
             var repository = new Mock<IUserRepository>();
             var eventAggregator = new Mock<IEventAggregator>();
             var regionManager = new Mock<IRegionManager>();
-            eventAggregator.Setup(x => x.GetEvent<UserCreatedEvent>()).Returns(new UserCreatedEvent());
+            eventAggregator.Setup(x => x.GetEvent<UserUpdatedEvent>()).Returns(new UserUpdatedEvent());
             eventAggregator.Setup(x => x.GetEvent<UserChangedEvent>()).Returns(new UserChangedEvent());
             repository.Setup(x => x.GetAll(It.IsAny<string>())).Returns(users);
             var viewModel = new UserAdministrationViewModel(repository.Object, eventAggregator.Object, regionManager.Object);
+            viewModel.OnLoaded();
 
             viewModel.SelectedItem = viewModel.Items.First();
             viewModel.DeleteCommand.Execute();

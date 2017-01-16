@@ -4,7 +4,7 @@ using Prism.Mvvm;
 
 namespace UserAdministrationApp.Desktop.Shared.ViewModels
 {
-    public abstract class CrudViewModel<T> : BindableBase
+    public abstract class CrudViewModel<T> : ViewModelBase
     {
         private ObservableCollection<T> items;
         private T selectedItem;
@@ -15,31 +15,16 @@ namespace UserAdministrationApp.Desktop.Shared.ViewModels
             AddCommand = new DelegateCommand(Add);
         }
 
-        public T SelectedItem
-        {
-            get { return selectedItem; }
-            set
-            {
-                selectedItem = value;
-                base.OnPropertyChanged(nameof(SelectedItem));
+        public T SelectedItem { get; set; }
 
-                SelectedItemChanged();
-            }
+        public bool IsEditorVisible => SelectedItem != null;
+
+        protected virtual void OnSelectedItemChanged()
+        {
+            base.OnPropertyChanged(nameof(IsEditorVisible));
         }
 
-        protected virtual void SelectedItemChanged()
-        {
-        }
-
-        public ObservableCollection<T> Items
-        {
-            get { return items; }
-            set
-            {
-                items = value;
-                base.OnPropertyChanged(nameof(Items));
-            }
-        }
+        public ObservableCollection<T> Items { get; set; }
 
         public DelegateCommand AddCommand { get; set; }
         public DelegateCommand DeleteCommand { get; set; }
@@ -49,5 +34,11 @@ namespace UserAdministrationApp.Desktop.Shared.ViewModels
         protected abstract void Add();
 
         protected abstract void Delete();
+
+        public override void OnLoaded()
+        {
+            base.OnLoaded();
+            Load();
+        }
     }
 }

@@ -19,28 +19,28 @@ namespace UserAdministrationApp.Desktop.Groups
             get { return "Groups"; }
         }
 
-        private readonly GroupRepository repository;
+        private readonly IGroupRepository repository;
         private readonly IRegionManager regionManager;
         private readonly IEventAggregator eventAggregator;
 
-        public GroupAdministrationViewModel(GroupRepository repository, IRegionManager regionManager, IEventAggregator eventAggregator)
+        public GroupAdministrationViewModel(IGroupRepository repository, IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             this.repository = repository;
             this.regionManager = regionManager;
             this.eventAggregator = eventAggregator;
-            Load();
 
-            eventAggregator.GetEvent<GroupCreatedEvent>().Subscribe(OnGroupCreated);
+            eventAggregator.GetEvent<GroupUpdatedEvent>().Subscribe(OnGroupUpdated);
         }
 
-        private void OnGroupCreated(GroupCreatedParam obj)
+        private void OnGroupUpdated(GroupUpdatedParam obj)
         {
+            SelectedItem = null;
             Load();
         }
 
-        protected override void SelectedItemChanged()
+        protected override void OnSelectedItemChanged()
         {
-            base.SelectedItemChanged();
+            base.OnSelectedItemChanged();
 
             if (SelectedItem != null)
             {

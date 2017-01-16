@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace UserAdministrationApp.Desktop.Groups
 {
     /// <summary>
-    /// Interaction logic for UserGroupsView.xaml
+    /// Interaction logic for GroupsForUserView.xaml
     /// </summary>
-    public partial class UserGroupsView : UserControl
+    public partial class GroupsForUserView : UserControl
     {
-        public UserGroupsView(UserGroupViewModel viewModel)
+        public GroupsForUserView(GroupsForUserViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;

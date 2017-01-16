@@ -6,5 +6,6 @@
         public static readonly string UserPluginRegion = "UserPluginRegion";
         public static readonly string UserEditor = "UserEditor";
         public static readonly string GroupEditor = "GroupEditor";
+        public static readonly string GroupsForUser = "GroupsForUser";
     }
 }

@@ -3,29 +3,21 @@ using System.Linq;
 using Microsoft.Practices.Prism.Mvvm;
 using Prism.Events;
 using UserAdministrationApp.Desktop.Shared.Events;
+using UserAdministrationApp.Desktop.Shared.ViewModels;
 using UserAdministrationApp.Services;
 
 namespace UserAdministrationApp.Desktop.Groups
 {
-    public class UserGroupViewModel : BindableBase
+    public class GroupsForUserViewModel : ViewModelBase
     {
-        private readonly IEventAggregator _eventAggregator;
-        private ObservableCollection<GroupModel> _userGroups;
+        private readonly IEventAggregator eventAggregator;
+        
+        public ObservableCollection<GroupModel> UserGroups { get; set; }
 
-        public ObservableCollection<GroupModel> UserGroups
+        public GroupsForUserViewModel(IEventAggregator eventAggregator)
         {
-            get { return _userGroups; }
-            set
-            {
-                _userGroups = value;
-                base.OnPropertyChanged(() => UserGroups);
-            }
-        }
-
-        public UserGroupViewModel(IEventAggregator eventAggregator)
-        {
-            _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<UserChangedEvent>().Subscribe(OnUserChanged);
+            this.eventAggregator = eventAggregator;
+            this.eventAggregator.GetEvent<UserChangedEvent>().Subscribe(OnUserChanged);
         }
 
         private void OnUserChanged(UserChangedParams userChangedParams)

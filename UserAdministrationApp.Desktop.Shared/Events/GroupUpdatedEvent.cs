@@ -3,12 +3,12 @@
 namespace UserAdministrationApp.Desktop.Shared.Events
 {
 
-    public class GroupCreatedEvent : PubSubEvent<GroupCreatedParam>
+    public class GroupUpdatedEvent : PubSubEvent<GroupUpdatedParam>
     {
 
     }
 
-    public class GroupCreatedParam
+    public class GroupUpdatedParam
     {
     }
 
