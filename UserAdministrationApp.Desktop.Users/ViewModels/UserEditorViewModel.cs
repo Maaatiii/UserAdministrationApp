@@ -7,11 +7,11 @@ using UserAdministrationApp.Services;
 
 namespace UserAdministrationApp.Desktop.Users.ViewModels
 {
-    public class UserEditorViewModel : CrudEditorViewModel<UserModel, User, UserRepository>, INavigationAware
+    public class UserEditorViewModel : CrudEditorViewModel<UserModel, User, IUserRepository>, INavigationAware
     {
         private readonly IEventAggregator eventAggregator;
 
-        public UserEditorViewModel(UserRepository repository, IEventAggregator eventAggregator) : base(repository)
+        public UserEditorViewModel(IUserRepository repository, IEventAggregator eventAggregator) : base(repository)
         {            
             this.eventAggregator = eventAggregator;
         }

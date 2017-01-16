@@ -25,13 +25,13 @@ namespace UserAdministrationApp.Desktop.Users.ViewModels
             get { return "Users"; }
         }
 
-        private readonly UserRepository repository;
+        private readonly IUserRepository repository;
 
         private readonly IEventAggregator eventAggregator;
 
         private readonly IRegionManager regionManager;
 
-        public UserAdministrationViewModel(UserRepository repository, IEventAggregator eventAggregator, IRegionManager regionManager)
+        public UserAdministrationViewModel(IUserRepository repository, IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             this.repository = repository;
             this.eventAggregator = eventAggregator;

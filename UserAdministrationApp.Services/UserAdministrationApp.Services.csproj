@@ -54,7 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GroupRepository.cs" />
+    <Compile Include="IGroupRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="UserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
