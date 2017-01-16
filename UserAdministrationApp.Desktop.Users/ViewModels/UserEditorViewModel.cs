@@ -1,7 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using Microsoft.Practices.Prism.Mvvm;
-using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using UserAdministrationApp.Desktop.Shared.Events;
@@ -10,31 +7,28 @@ using UserAdministrationApp.Services;
 
 namespace UserAdministrationApp.Desktop.Users.ViewModels
 {
-    public class UserEditorViewModel : BindableBase, INavigationAware
+    public class UserEditorViewModel : CrudEditorViewModel<UserModel, User, UserRepository>, INavigationAware
     {
-        private readonly UserRepository userRepository;
         private readonly IEventAggregator eventAggregator;
-        private UserModel item;
 
-        public UserEditorViewModel(UserRepository userRepository, IEventAggregator eventAggregator)
-        {
-            this.userRepository = userRepository;
+        public UserEditorViewModel(UserRepository repository, IEventAggregator eventAggregator) : base(repository)
+        {            
             this.eventAggregator = eventAggregator;
-
-            SaveCommand = new DelegateCommand(Save, CanSave);
         }
 
-        private bool CanSave()
+        protected override void Create(User entity)
         {
-            if (Item != null)
-            {
-                return string.IsNullOrWhiteSpace(Item.Error);
-            }
-
-            return false;
+            entity.CreatedOn = DateTime.Now;
+            repository.Create(entity);
+            eventAggregator.GetEvent<UserCreatedEvent>().Publish(new UserCreatedParam());
         }
 
-        private void Save()
+        protected override void Update(User entity)
+        {
+            repository.Update(entity);
+        }
+
+        protected override User CreateEmpty()
         {
             var user = new User()
             {
@@ -44,46 +38,9 @@ namespace UserAdministrationApp.Desktop.Users.ViewModels
                 Id = Item.Id
             };
 
-            if (Item.IsNew)
-            {
-                user.CreatedOn = DateTime.Now;
-                userRepository.Create(user);
-                eventAggregator.GetEvent<UserCreatedEvent>().Publish(new UserCreatedParam());
-            }
-            else
-            {
-                userRepository.Update(user);
-            }            
+            return user;
         }
-
-        private void OnSelectedUserOnPropertyChanged(object s, PropertyChangedEventArgs e)
-        {
-            SaveCommand.RaiseCanExecuteChanged();
-        }
-
-        public DelegateCommand SaveCommand { get; set; }
-
-        public UserModel Item
-        {
-            get { return item; }
-            set
-            {
-                if (Item != null)
-                {
-                    Item.PropertyChanged -= OnSelectedUserOnPropertyChanged;
-                }
-                item = value;
-                base.OnPropertyChanged(nameof(Item));
-
-                SaveCommand.RaiseCanExecuteChanged();
-
-                if (Item != null)
-                {
-                    Item.PropertyChanged += OnSelectedUserOnPropertyChanged;
-                }
-            }
-        }
-
+       
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             var itemParam = (UserModel)navigationContext.Parameters["item"];
@@ -97,7 +54,7 @@ namespace UserAdministrationApp.Desktop.Users.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            
+
         }
     }
 }

@@ -5,7 +5,7 @@ using UserAdministrationApp.Model;
 
 namespace UserAdministrationApp.Desktop.Users.ViewModels
 {
-    public class UserModel : BindableBase, IDataErrorInfo
+    public class UserModel : BindableBase, IDataErrorInfo, IEntityModel
     {
         private string _name;
 

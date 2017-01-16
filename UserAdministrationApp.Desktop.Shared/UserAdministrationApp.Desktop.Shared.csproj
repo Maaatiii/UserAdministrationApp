@@ -68,7 +68,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="RegionNames.cs" />
+    <Compile Include="ViewModels\CrudEditorViewModel.cs" />
     <Compile Include="ViewModels\CrudViewModel.cs" />
+    <Compile Include="ViewModels\IEntityModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -84,6 +86,10 @@
     <ProjectReference Include="..\UserAdministrationApp.Model\UserAdministrationApp.Model.csproj">
       <Project>{519C9816-A956-46AC-B40E-2E98592E35E7}</Project>
       <Name>UserAdministrationApp.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserAdministrationApp.Services\UserAdministrationApp.Services.csproj">
+      <Project>{55B009F7-E69B-4C2F-9692-72FC9CC25B5A}</Project>
+      <Name>UserAdministrationApp.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

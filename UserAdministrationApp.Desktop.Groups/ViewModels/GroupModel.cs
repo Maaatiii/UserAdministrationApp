@@ -1,10 +1,11 @@
 using System.ComponentModel;
 using Microsoft.Practices.Prism.Mvvm;
+using UserAdministrationApp.Desktop.Users.ViewModels;
 using UserAdministrationApp.Model;
 
 namespace UserAdministrationApp.Desktop.Groups
 {
-    public class GroupModel : BindableBase, IDataErrorInfo
+    public class GroupModel : BindableBase, IDataErrorInfo, IEntityModel
     {
         private string name;
 

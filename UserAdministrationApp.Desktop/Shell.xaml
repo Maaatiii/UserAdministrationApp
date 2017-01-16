@@ -8,7 +8,7 @@
         xmlns:inf="clr-namespace:UserAdministrationApp.Desktop.Shared;assembly=UserAdministrationApp.Desktop.Shared"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <TabControl regions:RegionManager.RegionName="{x:Static inf:RegionNames.MainRegion}">
             <TabControl.Resources>
