@@ -18,12 +18,10 @@ namespace UserAdministrationApp.Desktop.UserGroups
         private readonly IGroupRepository groupRepository;
         private readonly IUserRepository userRepository;
         private readonly IEventAggregator eventAggregator;
-        private List<UserModel> users;
-        private ObservableCollection<GroupModel> groups;
         private GroupModel selectedGroup;
         private List<UserModel> allUsers;
 
-        public ObservableCollection<GroupModel> Groups { get; set; }
+        public List<GroupModel> Groups { get; set; }
         
         public List<UserModel> Users { get; set; }
 
@@ -101,7 +99,7 @@ namespace UserAdministrationApp.Desktop.UserGroups
             allUsers =                
                 userRepository.GetAll().Select(u => new UserModel(u)).ToList();
 
-            Groups = new ObservableCollection<GroupModel>();
+            Groups = new List<GroupModel>();
             var groups = this.groupRepository.GetAll("Users");
             foreach (var @group in groups)
             {
