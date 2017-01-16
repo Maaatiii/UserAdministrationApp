@@ -104,7 +104,6 @@ namespace UserAdministrationApp.Desktop.UserGroups
             foreach (var @group in groups)
             {
                 var groupModel = new GroupModel(@group);
-                //groupModel.Users =  @group.Users.Select(u => new UserModel() {Name = u.Name});
                 Groups.Add(groupModel);
             }
         }
