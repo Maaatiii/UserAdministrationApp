@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Practices.Prism.Regions;
 using UserAdministrationApp.Desktop.Groups;
-using UserAdministrationApp.Desktop.UserGroups;
 using UserAdministrationApp.Desktop.Users;
 
 namespace UserAdministrationApp.Desktop
@@ -28,32 +27,44 @@ namespace UserAdministrationApp.Desktop
 
         protected override void ConfigureModuleCatalog()
         {
-            //Type moduleCType = typeof(UsersModule);
-            //ModuleCatalog.AddModule(
-            //  new ModuleInfo()
-            //  {
-            //      ModuleName = moduleCType.Name,
-            //      ModuleType = moduleCType.AssemblyQualifiedName,
-            //  });
+			base.ConfigureModuleCatalog();
 
-            //Type groupsModule = typeof(GroupsModule);
-            //ModuleCatalog.AddModule(
-            //  new ModuleInfo()
-            //  {
-            //      ModuleName = groupsModule.Name,
-            //      ModuleType = groupsModule.AssemblyQualifiedName,
-            //  });
+	        var pluginPath = @"c:\temp\s\UserAdministrationApp.Desktop.UserGroups.dll";
 
-            //Type userGroupsModule = typeof(UserGroupsModule);
-            //ModuleCatalog.AddModule(
-            //  new ModuleInfo()
-            //  {
-            //      ModuleName = userGroupsModule.Name,
-            //      ModuleType = userGroupsModule.AssemblyQualifiedName,
-            //  });
-        }
+	        ModuleCatalog.AddModule(new ModuleInfo()
+			{
+				ModuleName = "UserGroupsModule",
+				ModuleType = "UserAdministrationApp.Desktop.UserGroups.UserGroupsModule, UserAdministrationApp.Desktop.UserGroups, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+				Ref = new Uri(pluginPath, UriKind.RelativeOrAbsolute).AbsoluteUri,
+				InitializationMode = InitializationMode.OnDemand
+			});
 
-        protected override IModuleCatalog CreateModuleCatalog()
+			//Type moduleCType = typeof(UsersModule);
+			//ModuleCatalog.AddModule(
+			//  new ModuleInfo()
+			//  {
+			//      ModuleName = moduleCType.Name,
+			//      ModuleType = moduleCType.AssemblyQualifiedName,
+			//  });
+
+			//Type groupsModule = typeof(GroupsModule);
+			//ModuleCatalog.AddModule(
+			//  new ModuleInfo()
+			//  {
+			//      ModuleName = groupsModule.Name,
+			//      ModuleType = groupsModule.AssemblyQualifiedName,
+			//  });
+
+			//Type userGroupsModule = typeof(UserGroupsModule);
+			//ModuleCatalog.AddModule(
+			//  new ModuleInfo()
+			//  {
+			//      ModuleName = userGroupsModule.Name,
+			//      ModuleType = userGroupsModule.AssemblyQualifiedName,
+			//  });
+		}
+
+		protected override IModuleCatalog CreateModuleCatalog()
         {
             return new ConfigurationModuleCatalog();
         }

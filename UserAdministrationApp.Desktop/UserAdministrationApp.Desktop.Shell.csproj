@@ -184,10 +184,6 @@
       <Project>{41c4499b-485b-4344-bf96-ceec27a90356}</Project>
       <Name>UserAdministrationApp.Desktop.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UserAdministrationApp.Desktop.UserGroups\UserAdministrationApp.Desktop.UserGroups.csproj">
-      <Project>{A11B8E6D-5D04-4B01-A42D-CFCCA5A5AC48}</Project>
-      <Name>UserAdministrationApp.Desktop.UserGroups</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UserAdministrationApp.Desktop.Users\UserAdministrationApp.Desktop.Users.csproj">
       <Project>{c4915e56-496f-4aad-b339-5072aea7c039}</Project>
       <Name>UserAdministrationApp.Desktop.Users</Name>
